@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://jakarta.ee https://jakarta.ee/web-app_6_0.xsd"
+  version="6.0">
+
+    <display-name>The Scholarly Curator</display-name>
+
+    <welcome-file-list>
+        <welcome-file>login.jsp</welcome-file>
+    </welcome-file-list>
+
+    <!-- NE PAS AJOUTER DE <servlet> ICI -->
+    <!-- Car vous utilisez déjà @WebServlet dans vos classes Java -->
+
+</web-app>

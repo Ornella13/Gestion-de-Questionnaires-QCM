@@ -1,0 +1,57 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<aside class="w-64 fixed left-0 top-0 h-screen bg-white border-r border-gray-100 flex flex-col p-4 z-40">
+    <!-- Zone Logo -->
+    <div class="mb-8 px-2 flex items-center gap-3">
+        <div class="w-10 h-10 rounded-lg bg-purple-700 flex items-center justify-center text-white shadow-sm">
+            <i class="fas fa-graduation-cap text-xl"></i>
+        </div>
+        <div class="flex flex-col">
+        <h1 class="text-sm font-black text-slate-900 tracking-tight leading-none mb-1">
+            Zenith <span class="text-purple-700">Education</span>
+        </h1>
+        <p class="text-[9px] uppercase tracking-widest text-slate-400 font-extrabold leading-none">
+            Gestion Éditoriale
+        </p>
+    </div>
+    </div>
+
+    <nav class="flex-1 space-y-1">
+        <!-- MENUS ADMIN : Visibles uniquement pour l'Administrateur -->
+        <c:if test="${sessionScope.isAdmin}">
+            <a href="${pageContext.request.contextPath}/dashboard" class="flex items-center gap-3 px-4 py-2.5 rounded-lg font-medium text-sm ${page == 'dashboard' ? 'bg-purple-700 text-white shadow-md' : 'text-gray-500 hover:bg-purple-50'}">
+                <i class="fas fa-th-large"></i> Tableau de bord
+            </a>
+            <a href="${pageContext.request.contextPath}/questions" class="flex items-center gap-3 px-4 py-2.5 rounded-lg font-medium text-sm ${page == 'questions' ? 'bg-purple-700 text-white shadow-md' : 'text-gray-500 hover:bg-purple-50'}">
+                <i class="fas fa-book"></i> Banque de questions
+            </a>
+            <a href="${pageContext.request.contextPath}/students" class="flex items-center gap-3 px-4 py-2.5 rounded-lg font-medium text-sm ${page == 'students' ? 'bg-purple-700 text-white shadow-md' : 'text-gray-500 hover:bg-purple-50'}">
+                <i class="fas fa-user-graduate"></i> Étudiants
+            </a>
+            <a href="${pageContext.request.contextPath}/scheduling" class="flex items-center gap-3 px-4 py-2.5 rounded-lg font-medium text-sm ${page == 'scheduling' ? 'bg-purple-700 text-white shadow-md' : 'text-gray-500 hover:bg-purple-50'}">
+                <i class="fas fa-calendar-alt"></i> Planification
+            </a>
+        </c:if>
+
+        <!-- MENU EXAMEN : Accessible par l'étudiant ou l'admin -->
+       <!-- <a href="${pageContext.request.contextPath}/examen" class="flex items-center gap-3 px-4 py-2.5 rounded-lg font-medium text-sm ${page == 'exam' || page == 'examen' ? 'bg-purple-700 text-white shadow-md' : 'text-gray-500 hover:bg-purple-50'}">
+            <i class="fas fa-stopwatch"></i> Session d'examen
+        </a>-->
+
+        <!-- MENU RÉSULTATS : Libre pour l'admin, débloqué pour l'étudiant après fin -->
+        <c:if test="${sessionScope.examFinished || sessionScope.isAdmin}">
+            <a href="${pageContext.request.contextPath}/results" class="flex items-center gap-3 px-4 py-2.5 rounded-lg font-medium text-sm ${page == 'results' ? 'bg-purple-700 text-white shadow-md' : 'text-gray-500 hover:bg-purple-50'}">
+                <i class="fas fa-poll"></i> Résultats
+            </a>
+        </c:if>
+    </nav>
+
+    <div class="pt-4 border-t border-gray-100 mt-auto">
+      <!--  <button class="w-full flex items-center justify-center gap-2 py-3 bg-purple-700 text-white rounded-lg shadow-md font-semibold text-sm mb-6">
+            <i class="fas fa-plus-circle"></i> Nouveau Questionnaire
+        </button>-->
+        <a href="logout" class="w-full flex items-center gap-3 px-4 py-2 text-xs text-gray-500 hover:text-red-600">
+            <i class="fas fa-sign-out-alt"></i> Déconnexion
+        </a>
+    </div>
+</aside>
